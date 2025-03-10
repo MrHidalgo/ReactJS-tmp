@@ -1,0 +1,63 @@
+@use "sass:map";
+
+@function letter-spacing-convert($unit, $fontSize) {
+  @return (($unit * $fontSize) / 1000) * 1px;
+}
+
+@function line-height-convert($unit, $fontSize) {
+  @return ($unit / $fontSize);
+}
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@function search-key($map, $keys...) {
+  @each $key in $keys {
+    @if not map.has-key($map, $key) {
+      @error "The value is not present in the object... watch [_varaible.scss]";
+      @return false;
+    }
+    $map: map.get($map, $key);
+  }
+  
+  @return true;
+}
+
+@function get-value($map, $keys...) {
+  @if ($keys == 0) {
+    @error "'#{$keys}' is empty, check your arguments";
+  } @else {
+    @each $key in $keys {
+      $map : map.get($map, $key);
+    }
+  }
+  
+  @return $map;
+}
+
+@function calculateEm($pixels, $context: 16px) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+  
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+  
+  @return $pixels / $context * 1em;
+}
+
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+
+@function return-value($object, $name, $key) {
+  @if map.has-key($object, $name) and map.has-key(map.get($object, $name), $key) {
+    @return map.get(map.get($object, $name), $key);
+  }
+  
+  @error "❌ Function return-value(): Key '#{$key}' not found in '#{$name}'!";
+  @return null;
+}

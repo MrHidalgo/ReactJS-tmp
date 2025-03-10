@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+/*@import 'filepond/dist/filepond.min.css';*/
+/*@import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';*/
+
+@theme {
+	--color-white : #fff;
+	--color-black : #000;
+	--color-primary : #4285f4;
+	--color-success : #027A48;
+	--color-info : #33b5e5;
+	--color-warning : #DC6803;
+	--color-error : #FF695E;
+}
+
+:root {
+	--white: #fff;
+	--black: #000;
+	
+	background-color: var(--white);
+	
+	color: var(--black);
+	
+	line-height: 1.5;
+	letter-spacing: 0.02rem;
+	
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	font-synthesis: none;
+	
+	color-scheme: light dark;
+	text-rendering: optimizeLegibility;
+	
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	font-family: "Poppins", serif;
+	font-style: normal;
+	font-optical-sizing: auto;
+}
